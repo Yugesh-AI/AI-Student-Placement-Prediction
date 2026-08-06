@@ -1,25 +1,23 @@
-# Python cache
 __pycache__/
 *.py[cod]
 
-# Virtual environments
+
 .venv/
 venv/
 env/
 
-# PyCharm
+
 .idea/
 
-# VS Code
+
 .vscode/
 
-# Jupyter
+
 .ipynb_checkpoints/
 
-# Environment
 .env
 
-# OS files
+
 Thumbs.db
 .DS_Store
 desktop.ini
