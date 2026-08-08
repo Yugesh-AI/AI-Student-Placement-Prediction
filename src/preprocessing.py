@@ -21,26 +21,12 @@ MODELS_DIR.mkdir(exist_ok=True)
 
 def preprocess_data():
 
-    # ===============================
-    # Load Dataset
-    # ===============================
     df = pd.read_csv("../placementdata.csv")
 
-    # ===============================
-    # Remove Duplicate Records
-    # ===============================
     df.drop_duplicates(inplace=True)
 
-    # ===============================
-    # Drop StudentID
-    # StudentID is only an identifier,
-    # not a useful feature for prediction.
-    # ===============================
     df.drop(columns=["StudentID"], inplace=True)
 
-    # ===============================
-    # Numerical Columns
-    # ===============================
     numerical_columns = [
         "CGPA",
         "Internships",
@@ -54,13 +40,9 @@ def preprocess_data():
         "CommunicationScore"
     ]
 
-    # Fill missing numerical values with median
     for column in numerical_columns:
         df[column] = df[column].fillna(df[column].median())
 
-    # ===============================
-    # Categorical Columns
-    # ===============================
     categorical_columns = [
         "ExtracurricularActivities",
         "PlacementTraining",
@@ -71,9 +53,6 @@ def preprocess_data():
     for column in categorical_columns:
         df[column] = df[column].fillna(df[column].mode()[0])
 
-    # ===============================
-    # Encode Categorical Variables
-    # ===============================
     encoders = {}
 
     for column in categorical_columns:
@@ -84,16 +63,11 @@ def preprocess_data():
     # Save all encoders
     joblib.dump(encoders, "../models/encoders.pkl")
 
-    # ===============================
-    # Separate Features and Target
-    # ===============================
+  
     X = df.drop(columns=["PlacementStatus"])
 
     y = df["PlacementStatus"]
 
-    # ===============================
-    # Feature Scaling
-    # ===============================
     scaler = StandardScaler()
 
     X_scaled = scaler.fit_transform(X)
@@ -101,9 +75,7 @@ def preprocess_data():
     # Save scaler
     joblib.dump(scaler, "../models/scaler.pkl")
 
-    # ===============================
-    # Train-Test Split
-    # ===============================
+ 
     X_train, X_test, y_train, y_test = train_test_split(
         X_scaled,
         y,
