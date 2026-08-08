@@ -15,9 +15,6 @@ from sklearn.metrics import (
 
 from preprocessing import preprocess_data
 
-# ==========================================
-# Project Paths
-# ==========================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODELS_DIR = BASE_DIR / "models"
@@ -26,15 +23,7 @@ DATASET_PATH = BASE_DIR / "placementdata.csv"
 # Create models folder if it doesn't exist
 MODELS_DIR.mkdir(exist_ok=True)
 
-# ==========================================
-# Load Preprocessed Data
-# ==========================================
-
 X_train, X_test, y_train, y_test = preprocess_data()
-
-# ==========================================
-# Load Models
-# ==========================================
 
 models = {
 
@@ -55,9 +44,6 @@ best_model = None
 best_model_name = ""
 best_accuracy = 0
 
-# ==========================================
-# Evaluate Models
-# ==========================================
 
 for name, model in models.items():
 
@@ -115,10 +101,6 @@ for name, model in models.items():
 
         best_model_name = name
 
-# ==========================================
-# Comparison Table
-# ==========================================
-
 comparison_df = pd.DataFrame(results)
 
 comparison_df = comparison_df.sort_values(
@@ -137,9 +119,6 @@ comparison_df.to_csv(
     index=False
 )
 
-# ==========================================
-# Save Best Model
-# ==========================================
 
 joblib.dump(
     best_model,
