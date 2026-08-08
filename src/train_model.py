@@ -9,18 +9,11 @@ from sklearn.ensemble import RandomForestClassifier
 
 from preprocessing import preprocess_data
 
-# ===============================
-# Project Paths
-# ===============================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODELS_DIR = BASE_DIR / "models"
 DATASET_PATH = BASE_DIR / "placementdata.csv"
 MODELS_DIR.mkdir(exist_ok=True)
-
-# ===============================
-# Feature Names
-# ===============================
 
 FEATURE_NAMES = [
     "CGPA",
@@ -74,10 +67,6 @@ def train_models():
 
         trained_models[name] = model
 
-    # ============================
-    # Save Models
-    # ============================
-
     joblib.dump(
         trained_models["Logistic Regression"],
         MODELS_DIR / "logistic_regression.pkl"
@@ -92,10 +81,6 @@ def train_models():
         trained_models["Random Forest"],
         MODELS_DIR / "random_forest.pkl"
     )
-
-    # ============================
-    # Save Feature Importance
-    # ============================
 
     rf = trained_models["Random Forest"]
 
