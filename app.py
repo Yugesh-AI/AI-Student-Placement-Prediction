@@ -4,10 +4,6 @@ from src.predict import predict_student
 from src.dashboard import show_dashboard
 
 
-# ==========================================
-# Page Configuration
-# ==========================================
-
 st.set_page_config(
     page_title="AI Student Placement Prediction",
     page_icon="🎓",
@@ -19,10 +15,6 @@ st.title("🎓 AI Student Placement Prediction and Career Recommendation System"
 st.markdown("Predict the placement chances of a student and receive AI-powered career recommendations.")
 
 st.divider()
-
-# ==========================================
-# Student Information
-# ==========================================
 
 st.header("Student Details")
 
@@ -114,10 +106,6 @@ with col2:
     )
 
 st.divider()
-
-# ==========================================
-# Predict Button
-# ==========================================
 
 if st.button("🚀 Predict Placement", use_container_width=True):
 
